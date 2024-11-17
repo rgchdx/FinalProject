@@ -68,5 +68,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+    implementation(libs.firebase.bom)
+    implementation(libs.androidx.navigation.compose)
 }
