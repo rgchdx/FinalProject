@@ -5,7 +5,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.ait.finalproject.ui.screen.createpost.CreatePostScreen
 import com.ait.finalproject.ui.screen.discover.DiscoverScreen
 import com.ait.finalproject.ui.screen.map.MapScreen
@@ -13,7 +12,7 @@ import com.ait.finalproject.ui.screen.map.MapScreen
 @Composable
 fun MainNavHost(
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController,
     startDestination: String = MainNavigation.DiscoverScreen.route
 ) {
     NavHost(
