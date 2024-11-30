@@ -2,6 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.gradle)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -72,4 +76,15 @@ dependencies {
     implementation(libs.firebase.bom)
     implementation(libs.androidx.navigation.compose)
     implementation("androidx.compose.foundation:foundation:1.8.0-alpha06")
+    implementation(libs.androidx.navigation)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    androidTestImplementation(libs.hilt.android.testing)
+    testImplementation(libs.hilt.android.testing)
+    implementation(libs.retrofit)
+    implementation(libs.kotlinx.serialization)
+    implementation(libs.serialization.converter)
+    implementation(libs.coil)
 }
