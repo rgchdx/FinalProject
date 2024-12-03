@@ -1,7 +1,7 @@
 [versions]
 agp = "8.7.1"
 firebaseBom = "33.6.0"
-kotlin = "1.9.0"
+kotlin = "2.0.10"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -61,4 +61,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 hilt-gradle = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
