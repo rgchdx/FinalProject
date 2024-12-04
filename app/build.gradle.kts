@@ -90,4 +90,5 @@ dependencies {
     implementation(libs.serialization.converter)
     implementation(libs.coil)
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
+    implementation("io.coil-kt.coil3:coil-video:3.0.4")
 }
