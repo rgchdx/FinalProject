@@ -2,6 +2,11 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.gradle)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -48,6 +53,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
 
 dependencies {
@@ -61,6 +67,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.firebase.firestore)
+    implementation(libs.androidx.media3.common.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -70,4 +77,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.firebase.bom)
     implementation(libs.androidx.navigation.compose)
+    implementation("androidx.compose.foundation:foundation:1.8.0-alpha06")
+    implementation(libs.androidx.navigation)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    androidTestImplementation(libs.hilt.android.testing)
+    testImplementation(libs.hilt.android.testing)
+    implementation(libs.retrofit)
+    implementation(libs.kotlinx.serialization)
+    implementation(libs.serialization.converter)
+    implementation(libs.coil)
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
 }
