@@ -90,4 +90,7 @@ dependencies {
     implementation(libs.serialization.converter)
     implementation(libs.coil)
     implementation(libs.coil.network.okhttp)
+
+    // maps
+    implementation(libs.maps.compose)
 }
