@@ -89,4 +89,5 @@ dependencies {
     implementation(libs.kotlinx.serialization)
     implementation(libs.serialization.converter)
     implementation(libs.coil)
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
 }

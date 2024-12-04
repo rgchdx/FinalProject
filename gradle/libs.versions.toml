@@ -20,7 +20,8 @@ retrofit="2.9.0"
 kotlinxSerialization="1.4.0"
 serializationConverter="0.8.0"
 serialization="1.8.0"
-coil="2.1.0"
+coil="3.0.4"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -51,7 +52,7 @@ hilt-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", 
 retrofit = {group="com.squareup.retrofit2", name="retrofit", version.ref="retrofit"}
 kotlinx-serialization = {group="org.jetbrains.kotlinx", name="kotlinx-serialization-json", version.ref="kotlinxSerialization"}
 serialization-converter = {group="com.jakewharton.retrofit", name="retrofit2-kotlinx-serialization-converter", version.ref="serializationConverter"}
-coil = {group="io.coil-kt", name="coil-compose", version.ref="coil"}
+coil = {group="io.coil-kt.coil3", name="coil-compose", version.ref="coil"}
 
 
 [plugins]
