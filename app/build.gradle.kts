@@ -77,7 +77,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.firebase.bom)
     implementation(libs.androidx.navigation.compose)
-    implementation("androidx.compose.foundation:foundation:1.8.0-alpha06")
+    implementation(libs.androidx.foundation)
     implementation(libs.androidx.navigation)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.android)
@@ -89,5 +89,5 @@ dependencies {
     implementation(libs.kotlinx.serialization)
     implementation(libs.serialization.converter)
     implementation(libs.coil)
-    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
+    implementation(libs.coil.network.okhttp)
 }

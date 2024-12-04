@@ -1,6 +1,8 @@
 [versions]
 agp = "8.7.1"
+coilNetworkOkhttp = "3.0.4"
 firebaseBom = "33.6.0"
+foundation = "1.8.0-alpha06"
 kotlin = "2.0.10"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -25,6 +27,8 @@ coil="3.0.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "foundation" }
+coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilNetworkOkhttp" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
