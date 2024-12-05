@@ -25,8 +25,5 @@ fun MainNavHost(
                 screen.composable()
             }
         }
-//        composable(MainNavigation.CreatePostScreen.route){ CreatePostScreen() }
-//        composable(MainNavigation.DiscoverScreen.route){ DiscoverScreen() }
-//        composable(MainNavigation.MapScreen.route){ MapScreen() }
     }
 }
