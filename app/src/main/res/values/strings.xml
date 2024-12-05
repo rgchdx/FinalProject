@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="post_title">Post title</string>
+    <string name="post_description">Post description</string>
+    <string name="select_image">Select Image</string>
+    <string name="upload_post">Upload Post</string>
+    <string name="beautiful_hike_in_aquincum">Beautiful Hike in Aquincum!</string>
+    <string name="you_should_go_on_a_hike_in_the_morning_location_aquincum_mountain_idk">You should go on a hike in the morning. Location Aquincum Mountain idk</string>
+    <string name="https_cdn_pixabay_com_video_2024_10_06_234930_large_mp4">https://cdn.pixabay.com/video/2024/10/06/234930_large.mp4</string>
+    <string name="mountain_biking_at_knox_college_china">Mountain biking at Knox College China</string>
+    <string name="biking_is_gas_guys_yall_should_try_it">Biking is gas guys yall should try it</string>
+    <string name="https_cdn_pixabay_com_video_2024_02_09_199958_911694865_large_mp4">https://cdn.pixabay.com/video/2024/02/09/199958-911694865_large.mp4</string>
+    <string name="go_see_in_map">Go see in map!</string>
+    <string name="singapore">Singapore</string>
+    <string name="marker_in_singapore">Marker in Singapore</string>
 </resources>

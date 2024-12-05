@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -44,6 +45,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 import androidx.navigation.NavHostController
+import com.ait.finalproject.R
 import com.ait.finalproject.data.Post
 import com.ait.finalproject.ui.navigation.MainNavigation
 import com.google.android.gms.maps.model.LatLng
@@ -64,15 +66,15 @@ fun DiscoverScreen(
 
     val postList = listOf(
         Post(
-            title = "heyyy",
-            description = "first one",
-            contentUrl = "https://cdn.pixabay.com/video/2024/10/06/234930_large.mp4",
+            title = stringResource(R.string.beautiful_hike_in_aquincum),
+            description = stringResource(R.string.you_should_go_on_a_hike_in_the_morning_location_aquincum_mountain_idk),
+            contentUrl = stringResource(R.string.https_cdn_pixabay_com_video_2024_10_06_234930_large_mp4),
             location = LatLng(47.5591, 19.0503)
         ),
         Post(
-            title = "SECOND!!!!",
-            description = "I love places",
-            contentUrl = "https://cdn.pixabay.com/video/2024/02/09/199958-911694865_large.mp4",
+            title = stringResource(R.string.mountain_biking_at_knox_college_china),
+            description = stringResource(R.string.biking_is_gas_guys_yall_should_try_it),
+            contentUrl = stringResource(R.string.https_cdn_pixabay_com_video_2024_02_09_199958_911694865_large_mp4),
             location = LatLng(40.9417, 90.3721)
         )
     )
@@ -126,9 +128,9 @@ fun PostSetup(
         state = pagerState,
         modifier = Modifier.fillMaxSize()
     ) { page ->
-        Log.d("test", "Current page is: $page")
+        //Log.d("test", "Current page is: $page")
         val post = posts[page]
-        Log.d("uritest","Current video is: ${post.contentUrl}")
+        //Log.d("uritest","Current video is: ${post.contentUrl}")
         Box(
             modifier = Modifier.fillMaxSize(),
         ) {
@@ -148,12 +150,13 @@ fun PostSetup(
                         useController = false
                     }
                 },
-                modifier = Modifier.fillMaxSize()
-                    .clickable{
-                        if(exoPlayer.isPlaying){
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable {
+                        if (exoPlayer.isPlaying) {
                             exoPlayer.pause()
                             //add pause and unpause effect later
-                        }else{
+                        } else {
                             exoPlayer.play()
                         }
                     },
@@ -171,7 +174,10 @@ fun PostSetup(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.5f), shape = RoundedCornerShape(16.dp)),
+                        .background(
+                            Color.Black.copy(alpha = 0.5f),
+                            shape = RoundedCornerShape(16.dp)
+                        ),
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator(color = Color.White)
@@ -202,6 +208,7 @@ fun PostSetup(
                 ){
                     BasicText(
                         text = post.title, //change this to username and user icon if possible
+                        modifier = Modifier.weight(2.0f),
                         style = TextStyle(
                             fontSize = 20.sp,
                             color = Color.White,
@@ -212,9 +219,9 @@ fun PostSetup(
                         onClick = {
                             navigation.navigate(MainNavigation.MapScreen.createRoute(post.location.latitude, post.location.longitude))
                           },
-                        modifier = Modifier,
+                        modifier = Modifier.weight(1.0f),
                     ){
-                        Text(text = "Go see in map!")
+                        Text(text = stringResource(R.string.go_see_in_map))
                     }
                 }
                 Spacer(modifier = Modifier.height(4.dp))

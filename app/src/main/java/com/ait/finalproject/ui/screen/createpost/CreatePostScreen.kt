@@ -19,8 +19,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.ait.finalproject.R
 
 
 @Composable
@@ -69,14 +71,14 @@ fun CreatePostScreen() {
          */
         OutlinedTextField(value = title,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Post title") },
+            label = { Text(text = stringResource(R.string.post_title)) },
             onValueChange = {
                 title = it
             }
         )
         OutlinedTextField(value = description,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(text = "Post description") },
+            label = { Text(text = stringResource(R.string.post_description)) },
             onValueChange = {
                 description = it
             }
@@ -98,13 +100,13 @@ fun CreatePostScreen() {
                 //after final, create video choice points. Will need exoplayer
                 launcher.launch("image/*")
             }){
-            Text(text = "Select Image")
+            Text(text = stringResource(R.string.select_image))
         }
         Button(
             onClick = {
                 UploadPost()
             }){
-            Text(text = "Upload Post")
+            Text(text = stringResource(R.string.upload_post))
         }
         //perhaps change the Column to a lazyColumn
         //Add a select coordinates button
