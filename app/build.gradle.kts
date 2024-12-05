@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.hilt.gradle)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -44,6 +45,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -79,7 +81,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.firebase.bom)
     implementation(libs.androidx.navigation.compose)
-    implementation("androidx.compose.foundation:foundation:1.8.0-alpha06")
+    implementation(libs.androidx.foundation)
     implementation(libs.androidx.navigation)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.android)
@@ -91,6 +93,27 @@ dependencies {
     implementation(libs.kotlinx.serialization)
     implementation(libs.serialization.converter)
     implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
+
+    // maps
+    implementation(libs.maps.compose)
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
     implementation("io.coil-kt.coil3:coil-video:3.0.4")
+}
+
+secrets {
+    // To add your Maps API key to this project:
+    // 1. If the secrets.properties file does not exist, create it in the same folder as the local.properties file.
+    // 2. Add this line, where YOUR_API_KEY is your API key:
+    //        MAPS_API_KEY=YOUR_API_KEY
+    propertiesFileName = "secrets.properties"
+
+    // A properties file containing default secret values. This file can be
+    // checked in version control.
+    defaultPropertiesFileName = "secrets.defaults.properties"
+
+    // Configure which keys should be ignored by the plugin by providing regular expressions.
+    // "sdk.dir" is ignored by default.
+    ignoreList.add("keyToIgnore") // Ignore the key "keyToIgnore"
+    ignoreList.add("sdk.*")       // Ignore all keys matching the regexp "sdk.*"
 }
