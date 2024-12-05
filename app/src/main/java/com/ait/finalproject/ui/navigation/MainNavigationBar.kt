@@ -4,17 +4,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 
 @Composable
 fun MainNavigationBar(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: NavigationViewModel = viewModel()
 ) {
-    var selectedItem by remember { mutableIntStateOf(0) }
 
     val items = listOf(
         MainNavigation.DiscoverScreen,
@@ -27,14 +24,14 @@ fun MainNavigationBar(
             NavigationBarItem(
                 icon = {
                     Icon(
-                        if (selectedItem == index) item.selectedIcon else item.unselectedIcon,
+                        if (viewModel.selectedItem == index) item.selectedIcon else item.unselectedIcon,
                         contentDescription = null
                     )
                 },
-                selected = selectedItem == index,
+                selected = viewModel.selectedItem == index,
                 onClick = {
                     navController.navigate(item.route)
-                    selectedItem = index
+                    viewModel.selectedItem = index
                 }
             )
         }
