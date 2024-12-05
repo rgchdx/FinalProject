@@ -22,7 +22,7 @@ fun MainNavHost(
         viewModel.screens.forEachIndexed { index, screen ->
             composable(screen.route) {
                 viewModel.selectedItem = index
-                screen.composable()
+                screen.composable(navController)
             }
         }
     }
