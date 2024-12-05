@@ -8,16 +8,19 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -28,38 +31,52 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.media3.common.Player
-import coil3.compose.AsyncImage
-import coil3.compose.AsyncImagePainter
-import coil3.request.ImageRequest
-import coil3.request.crossfade
-import coil3.size.Size
-import com.ait.finalproject.data.Post
 import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
+import androidx.navigation.NavHostController
+import com.ait.finalproject.data.Post
+import com.ait.finalproject.ui.navigation.MainNavigation
+import com.google.android.gms.maps.model.LatLng
 
 
 @Composable
 fun DiscoverScreen(
     modifier: Modifier = Modifier,
-    //add viewmodel for later use
+    navigation: NavHostController
 ) {
-    //get these values from the createpost screen
-    val stringList = listOf("Title 1", "Title 2")
-    val descrptionList = listOf("Description 1", "Description 2")
-    val photoList = listOf("https://www.ait-budapest.com/sites/ait/files/styles/portrait/public/media/images/ekler-peter.jpg",
-        "https://www.ait-budapest.com/sites/ait/files/styles/portrait/public/media/images/vizermate.jpg")
-    val videoList = listOf("https://cdn.pixabay.com/video/2024/10/06/234930_large.mp4",
-        "https://cdn.pixabay.com/video/2024/02/09/199958-911694865_large.mp4")
+    // get these values from the createpost screen
+//    val stringList = listOf("Title 1", "Title 2")
+//    val descrptionList = listOf("Description 1", "Description 2")
+//    val photoList = listOf("https://www.ait-budapest.com/sites/ait/files/styles/portrait/public/media/images/ekler-peter.jpg",
+//        "https://www.ait-budapest.com/sites/ait/files/styles/portrait/public/media/images/vizermate.jpg")
+//    val videoList = listOf("https://cdn.pixabay.com/video/2024/10/06/234930_large.mp4",
+//        "https://cdn.pixabay.com/video/2024/02/09/199958-911694865_large.mp4")
+
+    val postList = listOf(
+        Post(
+            title = "heyyy",
+            description = "first one",
+            contentUrl = "https://cdn.pixabay.com/video/2024/10/06/234930_large.mp4",
+            location = LatLng(47.5591, 19.0503)
+        ),
+        Post(
+            title = "SECOND!!!!",
+            description = "I love places",
+            contentUrl = "https://cdn.pixabay.com/video/2024/02/09/199958-911694865_large.mp4",
+            location = LatLng(40.9417, 90.3721)
+        )
+    )
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -68,9 +85,8 @@ fun DiscoverScreen(
 
     ){
          PostSetup(
-             videoUrls = videoList,
-             titles = stringList,
-             descriptions = descrptionList
+             navigation = navigation,
+             posts = postList
          )
     }
 }
@@ -79,8 +95,11 @@ fun DiscoverScreen(
 //@OptIn(ExperimentalPagerApi::class)
 @OptIn(UnstableApi::class)
 @Composable
-fun PostSetup(videoUrls: List<String>, titles: List<String>, descriptions: List<String>) {
-    val pagerState = rememberPagerState(pageCount={videoUrls.size})
+fun PostSetup(
+    posts: List<Post>,
+    navigation: NavHostController
+) {
+    val pagerState = rememberPagerState(pageCount={posts.size})
     val context = LocalContext.current
     val exoPlayer = remember { ExoPlayer.Builder(context).build()}
     var playerState by remember {mutableStateOf<Int?> (null)}
@@ -108,7 +127,8 @@ fun PostSetup(videoUrls: List<String>, titles: List<String>, descriptions: List<
         modifier = Modifier.fillMaxSize()
     ) { page ->
         Log.d("test", "Current page is: $page")
-        Log.d("uritest","Current video is: ${videoUrls[page]}")
+        val post = posts[page]
+        Log.d("uritest","Current video is: ${post.contentUrl}")
         Box(
             modifier = Modifier.fillMaxSize(),
         ) {
@@ -141,8 +161,8 @@ fun PostSetup(videoUrls: List<String>, titles: List<String>, descriptions: List<
                     it.player = exoPlayer
                 }
             )
-            LaunchedEffect(videoUrls) {
-                val mediaItem = MediaItem.fromUri(videoUrls[page])
+            LaunchedEffect(posts) {
+                val mediaItem = MediaItem.fromUri(post.contentUrl)
                 exoPlayer.setMediaItem(mediaItem)
                 exoPlayer.prepare()
                 exoPlayer.playWhenReady = true
@@ -151,7 +171,7 @@ fun PostSetup(videoUrls: List<String>, titles: List<String>, descriptions: List<
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.5f), shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp)),
+                        .background(Color.Black.copy(alpha = 0.5f), shape = RoundedCornerShape(16.dp)),
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator(color = Color.White)
@@ -177,18 +197,30 @@ fun PostSetup(videoUrls: List<String>, titles: List<String>, descriptions: List<
                     .align(Alignment.BottomStart)
                     .padding(16.dp)
             ) {
-                BasicText(
-                    text = titles[page], //change this to username and user icon if possible
-                    style = androidx.compose.ui.text.TextStyle(
-                        fontSize = 20.sp,
-                        color = Color.White,
-                        textAlign = TextAlign.Start
+                Row(
+                    modifier = Modifier.fillMaxWidth()
+                ){
+                    BasicText(
+                        text = post.title, //change this to username and user icon if possible
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                            color = Color.White,
+                            textAlign = TextAlign.Start
+                        )
                     )
-                )
+                    Button(
+                        onClick = {
+                            navigation.navigate(MainNavigation.MapScreen.createRoute(post.location.latitude, post.location.longitude))
+                          },
+                        modifier = Modifier,
+                    ){
+                        Text(text = "Go see in map!")
+                    }
+                }
                 Spacer(modifier = Modifier.height(4.dp))
                 BasicText(
-                    text = descriptions[page],
-                    style = androidx.compose.ui.text.TextStyle(
+                    text = post.description,
+                    style = TextStyle(
                         fontSize = 14.sp,
                         color = Color.LightGray,
                         textAlign = TextAlign.Start

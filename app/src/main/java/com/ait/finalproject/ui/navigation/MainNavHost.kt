@@ -20,9 +20,9 @@ fun MainNavHost(
         startDestination = startDestination
     ) {
         viewModel.screens.forEachIndexed { index, screen ->
-            composable(screen.route) {
+            composable(screen.route, arguments = screen.arguments) {
                 viewModel.selectedItem = index
-                screen.composable()
+                screen.composable(navController)
             }
         }
     }
