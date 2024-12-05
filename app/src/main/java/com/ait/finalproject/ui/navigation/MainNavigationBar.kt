@@ -12,26 +12,18 @@ fun MainNavigationBar(
     navController: NavHostController,
     viewModel: NavigationViewModel = viewModel()
 ) {
-
-    val items = listOf(
-        MainNavigation.DiscoverScreen,
-        MainNavigation.CreatePostScreen,
-        MainNavigation.MapScreen
-    )
-
     NavigationBar {
-        items.forEachIndexed { index, item ->
+        viewModel.screens.forEachIndexed { index, screen ->
             NavigationBarItem(
                 icon = {
                     Icon(
-                        if (viewModel.selectedItem == index) item.selectedIcon else item.unselectedIcon,
+                        if (viewModel.selectedItem == index) screen.selectedIcon else screen.unselectedIcon,
                         contentDescription = null
                     )
                 },
                 selected = viewModel.selectedItem == index,
                 onClick = {
-                    navController.navigate(item.route)
-                    viewModel.selectedItem = index
+                    navController.navigate(screen.route)
                 }
             )
         }

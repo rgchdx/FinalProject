@@ -6,9 +6,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.ait.finalproject.ui.screen.createpost.CreatePostScreen
-import com.ait.finalproject.ui.screen.discover.DiscoverScreen
-import com.ait.finalproject.ui.screen.map.MapScreen
 
 @Composable
 fun MainNavHost(
@@ -23,10 +20,13 @@ fun MainNavHost(
         startDestination = startDestination
     ) {
         viewModel.screens.forEachIndexed { index, screen ->
-            composable(screen.route) {  }
+            composable(screen.route) {
+                viewModel.selectedItem = index
+                screen.composable()
+            }
         }
-        composable(MainNavigation.CreatePostScreen.route){ CreatePostScreen() }
-        composable(MainNavigation.DiscoverScreen.route){ DiscoverScreen() }
-        composable(MainNavigation.MapScreen.route){ MapScreen() }
+//        composable(MainNavigation.CreatePostScreen.route){ CreatePostScreen() }
+//        composable(MainNavigation.DiscoverScreen.route){ DiscoverScreen() }
+//        composable(MainNavigation.MapScreen.route){ MapScreen() }
     }
 }
