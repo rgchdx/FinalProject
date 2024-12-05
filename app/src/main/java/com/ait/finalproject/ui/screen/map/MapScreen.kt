@@ -24,7 +24,7 @@ fun MapScreen(
     ) {
         Marker(
             state = locationMarkerState,
-            // change the following strings to be in location marker state
+            // todo: change the following strings to be in location marker state
             title = "Singapore",
             snippet = "Marker in Singapore"
         )
