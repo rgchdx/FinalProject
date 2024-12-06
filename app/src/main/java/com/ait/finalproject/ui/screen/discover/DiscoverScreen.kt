@@ -175,8 +175,7 @@ fun PostSetup(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(
-                            Color.Black.copy(alpha = 0.5f),
-                            shape = RoundedCornerShape(16.dp)
+                            Color.Black.copy(alpha = 0.5f)
                         ),
                     contentAlignment = Alignment.Center
                 ) {
@@ -198,41 +197,39 @@ fun PostSetup(
                 contentScale = ContentScale.Crop,
             )
              */
-            Column(
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .padding(16.dp)
+            Row(
+                modifier = Modifier.fillMaxWidth().align(Alignment.BottomStart).padding(16.dp)
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth()
-                ){
+                Column {
                     BasicText(
                         text = post.title, //change this to username and user icon if possible
-                        modifier = Modifier.weight(2.0f),
                         style = TextStyle(
                             fontSize = 20.sp,
                             color = Color.White,
                             textAlign = TextAlign.Start
                         )
                     )
-                    Button(
-                        onClick = {
-                            navigation.navigate(MainNavigation.MapScreen.createRoute(post.location.latitude, post.location.longitude))
-                          },
-                        modifier = Modifier.weight(1.0f),
-                    ){
-                        Text(text = stringResource(R.string.go_see_in_map))
-                    }
-                }
-                Spacer(modifier = Modifier.height(4.dp))
-                BasicText(
-                    text = post.description,
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        color = Color.LightGray,
-                        textAlign = TextAlign.Start
+                    Spacer(modifier = Modifier.height(4.dp))
+                    BasicText(
+                        text = post.description,
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            color = Color.LightGray,
+                            textAlign = TextAlign.Start
+                        )
                     )
+                }
+                Spacer(
+                    modifier = Modifier.weight(1.0f)
                 )
+                Button(
+                    onClick = {
+                        navigation.navigate(MainNavigation.MapScreen.createRoute(post.location.latitude, post.location.longitude))
+                    },
+                    modifier = Modifier,
+                ){
+                    Text(text = "Go see in map!")
+                }
             }
         }
     }
