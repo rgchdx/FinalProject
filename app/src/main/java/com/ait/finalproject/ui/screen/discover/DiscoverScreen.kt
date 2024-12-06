@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -148,12 +147,13 @@ fun PostSetup(
                         useController = false
                     }
                 },
-                modifier = Modifier.fillMaxSize()
-                    .clickable{
-                        if(exoPlayer.isPlaying){
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable {
+                        if (exoPlayer.isPlaying) {
                             exoPlayer.pause()
                             //add pause and unpause effect later
-                        }else{
+                        } else {
                             exoPlayer.play()
                         }
                     },
@@ -171,7 +171,9 @@ fun PostSetup(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.5f), shape = RoundedCornerShape(16.dp)),
+                        .background(
+                            Color.Black.copy(alpha = 0.5f)
+                        ),
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator(color = Color.White)
@@ -192,14 +194,10 @@ fun PostSetup(
                 contentScale = ContentScale.Crop,
             )
              */
-            Column(
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .padding(16.dp)
+            Row(
+                modifier = Modifier.fillMaxWidth().align(Alignment.BottomStart).padding(16.dp)
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth()
-                ){
+                Column {
                     BasicText(
                         text = post.title, //change this to username and user icon if possible
                         style = TextStyle(
@@ -208,24 +206,27 @@ fun PostSetup(
                             textAlign = TextAlign.Start
                         )
                     )
-                    Button(
-                        onClick = {
-                            navigation.navigate(MainNavigation.MapScreen.createRoute(post.location.latitude, post.location.longitude))
-                          },
-                        modifier = Modifier,
-                    ){
-                        Text(text = "Go see in map!")
-                    }
-                }
-                Spacer(modifier = Modifier.height(4.dp))
-                BasicText(
-                    text = post.description,
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        color = Color.LightGray,
-                        textAlign = TextAlign.Start
+                    Spacer(modifier = Modifier.height(4.dp))
+                    BasicText(
+                        text = post.description,
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            color = Color.LightGray,
+                            textAlign = TextAlign.Start
+                        )
                     )
+                }
+                Spacer(
+                    modifier = Modifier.weight(1.0f)
                 )
+                Button(
+                    onClick = {
+                        navigation.navigate(MainNavigation.MapScreen.createRoute(post.location.latitude, post.location.longitude))
+                    },
+                    modifier = Modifier,
+                ){
+                    Text(text = "Go see in map!")
+                }
             }
         }
     }
